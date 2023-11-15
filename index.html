@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <title>Trabalho Js</title>
+    </head>
+    <body>
+        <!-header contendo nav, ul, li, div.toggle-switch = checkbox dark mode->
+        <header>
+            <nav>
+                <ul>
+                    <a href="index.html"><li><i class="fa fa-home"> Home</li></i></a>
+                    <a href="#"><li><i class="fa-solid fa-scroll"></i>Sobre</li></a>
+                    <a href="#"><li>Contato</li></a>
+                </ul>
+               
+                <div class="toggle-switch">
+                    <label for="toggle-btn">Dark_Mode</label>
+                    <input type="checkbox" id="toggle-btn">
+                </div> 
+            </nav>
+        </header>
+       <!-Main contendo tudo do site->
+        <main>
+            <section class="banner">
+                <div class="slides">
+                    <div class="slide">
+                        <img  class="b" src="img/bgs.webp" alt="">
+                    </div>
+                    <div class="slide">
+                        <img class="b" src="img/CCXP.webp" alt="">
+                    </div>
+                    <div class="slide">
+                        <img class="b" src="img/4amigos.webp" alt="">
+                    </div>
+                </div>
+            </section>
+       
+        <!-Div.f é a div do filtro de lista->
+                <div class="f">
+                    <label for="filterInput">Filtrar Lista:</label>
+                    <input type="text" id="filterInput" placeholder="Procure um evento . . .">
+                </div> 
+        <!-Div.cards contém a div.card que são os cards de eventos ->
+        <div class="cards">
+            <div class="card">
+                <div class="top">
+                    <img src="img/bgs.png" alt="">
+                </div>
+                <div class="ma">
+                    <h3>BGS</h3>
+                    <P>Datas: 14/10 até 15/10</P>
+                    <P>Local: São Paulo, Expo Center Norte.</P>
+                </div>
+            </div>
+            <div class="card">
+                <div class="top">
+                    <img src="img/images.jpg" alt="">
+                </div>
+                <div class="ma">
+                    <h3>CCXP</h3>
+                    <p>Data: 29/11 até 03/12.</p>
+                    <p>Local: São Paulo Expo.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="top">
+                    <img src="img/download.jpg" alt="">
+                </div>
+                <div class="ma">
+                    <h3>4Amigos</h3>
+                    <p>Data: 07/07/2023.</p>
+                    <p>Local: Campo Grande - MS</p>
+                </div>          
+            </div>
+        </div>
+    </main>
+        <script>
+            //dark mode
+            const dark_color = ['rgb(37, 34, 34)'];
+
+            const ligth_color = ['#eeeedd'];
+
+            document.querySelector('#toggle-btn').
+            addEventListener('click', function(){
+                if(this.checked){
+                    document.body.style.setProperty
+                    ('--primary', dark_color[0]);
+                } else{
+                    document.body.style.setProperty
+                    ('--primary', ligth_color);
+                }
+            });
+
+            //filtro da lista
+            document.getElementById('filterInput').addEventListener('input', function () {
+            const searchTerm = this.value.toLowerCase();
+            const items = document.querySelectorAll('.card');
+
+                items.forEach(function (item) {
+                    const itemText = item.textContent.toLowerCase();
+                    const shouldShow = itemText.includes(searchTerm);
+
+                    if (shouldShow) {
+                        item.classList.remove('hidden');
+                    } else {
+                        item.classList.add('hidden');
+                    }
+                })
+             });
+
+    
+            document.getElementById('filterInput').addEventListener('input', filterList);
+
+        </script>
+    </body>
+</html>
